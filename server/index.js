@@ -10,11 +10,6 @@ dotenv.load({
 	allowEmptyValues: false
 });
 
-const QueueConfig = require('./config/queue.conf');
-const RoutesConfig = require('./config/routes.conf');
-const ApplicationConfig = require('./config/app.conf');
-const SocketIOConfig = require('./config/socket.conf');
-
 const app = express();
 const server = http.createServer(app);
 
