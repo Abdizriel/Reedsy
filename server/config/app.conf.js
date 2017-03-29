@@ -1,5 +1,6 @@
 'use strict';
 
+const logger = require('logfmt');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const contentLength = require('express-content-length-validator');
@@ -18,6 +19,8 @@ const ApplicationConfig = () => {
 		app.use(contentLength.validateMax({ max: 999 }));
 		app.use(helmet());
 		app.use(kue.app);
+
+		logger.log({ type: 'info', msg: 'configured', service: 'application' });
 	};
 
 	return { init };

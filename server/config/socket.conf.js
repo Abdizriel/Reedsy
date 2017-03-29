@@ -1,5 +1,6 @@
 'use strict';
 
+const logger = require('logfmt');
 const QueueSockets = require('../workers/index.socket');
 
 const SocketIOConfig = () => {
@@ -32,6 +33,8 @@ const SocketIOConfig = () => {
 			onDisconnect(socket);
 			socket.log('CONNECTED');
 		});
+
+		logger.log({ type: 'info', msg: 'configured', service: 'socket' });
 	};
 
 	return { init };

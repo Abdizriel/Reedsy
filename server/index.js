@@ -1,5 +1,6 @@
 'use strict';
 
+const logger = require('logfmt');
 const http = require('http');
 const express = require('express');
 const dotenv = require('dotenv-safe');
@@ -32,7 +33,13 @@ SocketIOConfig.init(socketio);
  */
 const startServer = () => {
 	server.listen(process.env.PORT, process.env.IP, () => {
-		console.log('Express server listening on %s:%s in %s mode', process.env.IP, process.env.PORT, process.env.NODE_ENV);
+		logger.log({
+			type: 'info',
+			msg: 'starting server',
+			port: server.address().port,
+			address: server.address().address,
+			mode: process.env.NODE_ENV
+		});
 	});
 };
 

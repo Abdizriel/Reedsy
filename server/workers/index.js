@@ -1,6 +1,7 @@
 'use strict';
 
 const { EventEmitter } = require('events');
+const logger = require('logfmt');
 const kue = require('kue');
 const HTMLWorker = require('./html');
 const PDFWorker = require('./pdf');
@@ -85,20 +86,33 @@ const Workers = () => {
 	 */
 	const init = () => {
 		const queues = ['html', 'pdf'];
+
 		// eslint-disable-next-line array-callback-return
 		queues.map(queue => {
-			console.log('Init Queue:', queue);
+			logger.log({ type: 'info', msg: 'starting worker', worker: queue });
 			process(queue);
 		});
 
 		queue
 			.on('job enqueue', (id, type) => {
 				QueueEvents.emit('started');
-				console.log('Job %s got queued of type %s', id, type);
+				logger.log({ type: 'info',  msg: 'queue started', id, queue : type });
 			})
-			.on('job complete', () => {
-				QueueEvents.emit('completed');
+			.on('job complete', id => {
+				kue.Job.get(id, (err, { type, duration }) => {
+    			if (err) return;
+					QueueEvents.emit('completed');
+					logger.log({
+						type: 'info',
+						msg: 'queue completed',
+						id,
+						queue : type,
+					 	duration: duration
+					});
+  			});
 			});
+
+		logger.log({ type: 'info', msg: 'configured', service: 'worker' });
 	};
 
 	return { init, QueueEvents };
