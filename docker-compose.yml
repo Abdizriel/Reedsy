@@ -1,0 +1,19 @@
+queue:
+  build: ./server
+  links:
+    - redis:redis
+  ports:
+    - "33333:9000"
+  environment:
+    NODE_ENV: 'production'
+    IP: '0.0.0.0'
+    PORT: '9000'
+    REDIS_URI: 'redis://redis:6379'
+  volumes:
+    - .:/home/app/queue
+    - /home/app/queue/node_modules
+
+redis:
+  image: redis
+  ports:
+    - "6379:6379"
