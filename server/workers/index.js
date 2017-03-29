@@ -30,8 +30,8 @@ const Workers = () => {
 	 */
 	const concurrency = () => {
 		return {
-			HTML: 100,
-			PDF: 10
+			HTML: 10,
+			PDF: 1
 		};
 	};
 
@@ -94,20 +94,52 @@ const Workers = () => {
 		});
 
 		queue
-			.on('job enqueue', (id, type) => {
-				QueueEvents.emit('started');
-				logger.log({ type: 'info',  msg: 'queue started', id, queue : type });
+			.on('job enqueue', id => {
+				kue.Job.get(id, (err, job) => {
+    			if (err) return;
+					QueueEvents.emit('save', job);
+					logger.log({
+						type: 'info',
+						msg: 'queue added',
+						id,
+						queue : job.type
+					});
+  			});
+			})
+			.on('job start', id => {
+				kue.Job.get(id, (err, job) => {
+    			if (err) return;
+					QueueEvents.emit('save', job);
+					logger.log({
+						type: 'info',
+						msg: 'queue started',
+						id,
+						queue : job.type
+					});
+  			});
 			})
 			.on('job complete', id => {
-				kue.Job.get(id, (err, { type, duration }) => {
+				kue.Job.get(id, (err, job) => {
     			if (err) return;
-					QueueEvents.emit('completed');
+					QueueEvents.emit('save', job);
 					logger.log({
 						type: 'info',
 						msg: 'queue completed',
 						id,
-						queue : type,
-					 	duration: duration
+						queue : job.type,
+					 	duration: job.duration
+					});
+  			});
+			})
+			.on('job remove', id => {
+				kue.Job.get(id, (err, job) => {
+    			if (err) return;
+					QueueEvents.emit('remove', job);
+					logger.log({
+						type: 'info',
+						msg: 'queue removed',
+						id,
+						queue : job.type,
 					});
   			});
 			});

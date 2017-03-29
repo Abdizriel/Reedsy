@@ -2,7 +2,7 @@
 
 const { QueueEvents } = require('./index')();
 
-const events = ['started', 'completed'];
+const events = ['save', 'remove'];
 
 /**
  * @description Emit Model event to client
@@ -36,7 +36,7 @@ const removeListener = (event, listener) => {
 const register = socket => {
 	for (let i = 0, eventsLength = events.length; i < eventsLength; i++) {
 		const event = events[i];
-		const listener = createListener('service:' + event, socket);
+		const listener = createListener('queue:' + event, socket);
 
 		QueueEvents.on(event, listener);
 		socket.on('disconnect', removeListener(event, listener));
