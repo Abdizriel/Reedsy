@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const contentLength = require('express-content-length-validator');
 const helmet = require('helmet');
 const express = require('express');
+const kue = require('kue');
 
 const ApplicationConfig = () => {
 	const init = app => {
@@ -16,6 +17,7 @@ const ApplicationConfig = () => {
 		app.use(morgan('dev'));
 		app.use(contentLength.validateMax({ max: 999 }));
 		app.use(helmet());
+		app.use(kue.app);
 	};
 
 	return { init };

@@ -51,6 +51,7 @@
 		"express": "^4.15.2",
 		"express-content-length-validator": "^1.0.0",
 		"helmet": "^3.5.0",
+		"kue": "^0.11.5",
 		"morgan": "^1.8.1",
 		"socket.io": "^1.7.3",
 		"socket.io-client": "^1.7.3"

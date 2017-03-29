@@ -1,5 +1,7 @@
 'use strict';
 
+const QueueSockets = require('../workers/index.socket');
+
 const SocketIOConfig = () => {
 	const onDisconnect = socket => {
 		socket.on('disconnect', () => {
@@ -11,6 +13,8 @@ const SocketIOConfig = () => {
 		socket.on('info', data => {
 			socket.log(JSON.stringify(data, null, 2));
 		});
+		// eslint-disable-next-line new-cap
+		QueueSockets(socket);
 	};
 
 	const init = socketio => {

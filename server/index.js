@@ -18,10 +18,12 @@ const socketio = require('socket.io')(server, {
 	path: '/socket.io-client'
 });
 
+const Workers = require('./workers')();
 const ApplicationConfig = require('./config/app.conf')();
 const SocketIOConfig = require('./config/socket.conf')();
 
 ApplicationConfig.init(app);
+Workers.init();
 SocketIOConfig.init(socketio);
 
 /**
