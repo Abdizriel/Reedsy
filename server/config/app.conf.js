@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const contentLength = require('express-content-length-validator');
 const helmet = require('helmet');
 const express = require('express');
+const path = require('path');
 const kue = require('kue');
 
 const ApplicationConfig = () => {
@@ -13,12 +14,15 @@ const ApplicationConfig = () => {
 		const _root = process.cwd();
 		const _nodeModules = '/node_modules/';
 
+		app.use(express.static(path.join(_root, '.tmp')));
 		app.use(express.static(_root + _nodeModules));
+		app.set('appPath', path.join(_root, 'client'));
+		app.use(express.static(app.get('appPath')));
 		app.use(bodyParser.json());
 		app.use(morgan('dev'));
 		app.use(contentLength.validateMax({ max: 999 }));
 		app.use(helmet());
-		app.use(kue.app);
+		app.use('/api', kue.app);
 
 		logger.log({ type: 'info', msg: 'configured', service: 'application' });
 	};
