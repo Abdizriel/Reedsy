@@ -1,56 +1,58 @@
 {
-  "name": "reedsy-backend",
-  "version": "1.0.0",
-  "description": "Reedsy assignment backend",
-  "main": "bin/reedsy-backend",
-  "directories": {
-    "bin": "./bin"
-  },
-  "scripts": {
-    "start": "bin/reedsy-backend",
-    "dev": "NODE_ENV=development bin/reedsy-backend",
-    "test": "xo && NODE_ENV=test mocha '**/*.spec.js'",
-    "coverage": "NODE_ENV=test istanbul cover _mocha '**/*.spec.js'"
-  },
-  "xo": {
-    "rules": {
-      "object-curly-spacing": [
-        "error",
-        "always"
-      ]
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Abdizriel/Reedsy.git"
-  },
-  "keywords": [
-    "nodejs",
-    "expressjs",
-    "rabbitmq",
-    "mongodb",
-    "queue"
-  ],
-  "author": "Marcin Mrotek <kontakt@marcinmrotek.pl>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Abdizriel/Reedsy/issues"
-  },
-  "homepage": "https://github.com/Abdizriel/Reedsy#readme",
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "sinon": "^2.1.0",
-    "xo": "^0.18.1"
-  },
-  "dependencies": {
-    "body-parser": "^1.17.1",
-    "dotenv-safe": "^4.0.3",
-    "express": "^4.15.2",
-    "express-content-length-validator": "^1.0.0",
-    "helmet": "^3.5.0",
-    "morgan": "^1.8.1",
-    "socket.io-client": "^1.7.3"
-  }
+	"name": "reedsy-backend",
+	"version": "1.0.0",
+	"description": "Reedsy assignment backend",
+	"main": "bin/reedsy-backend",
+	"directories": {
+		"bin": "./bin"
+	},
+	"scripts": {
+		"start": "bin/reedsy-backend",
+		"dev": "NODE_ENV=development bin/reedsy-backend",
+		"test": "xo && NODE_ENV=test mocha '**/*.spec.js'",
+		"coverage": "NODE_ENV=test istanbul cover _mocha '**/*.spec.js'"
+	},
+	"xo": {
+		"rules": {
+			"object-curly-spacing": [
+				"error",
+				"always"
+			]
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/Abdizriel/Reedsy.git"
+	},
+	"keywords": [
+		"nodejs",
+		"expressjs",
+		"rabbitmq",
+		"mongodb",
+		"queue"
+	],
+	"author": "Marcin Mrotek <kontakt@marcinmrotek.pl>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Abdizriel/Reedsy/issues"
+	},
+	"homepage": "https://github.com/Abdizriel/Reedsy#readme",
+	"devDependencies": {
+		"chai": "^3.5.0",
+		"istanbul": "^0.4.5",
+		"mocha": "^3.2.0",
+		"proxyquire": "^1.7.11",
+		"sinon": "^2.1.0",
+		"xo": "^0.18.1"
+	},
+	"dependencies": {
+		"body-parser": "^1.17.1",
+		"dotenv-safe": "^4.0.3",
+		"express": "^4.15.2",
+		"express-content-length-validator": "^1.0.0",
+		"helmet": "^3.5.0",
+		"morgan": "^1.8.1",
+		"socket.io": "^1.7.3",
+		"socket.io-client": "^1.7.3"
+	}
 }
