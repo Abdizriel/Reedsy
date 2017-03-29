@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Conversions:</h1>
+      <button ng-click="$ctrl.addQueue('pdf')">New PDF Conversion</button>
+      <button ng-click="$ctrl.addQueue('html')">New HTML Conversion</button>
+      <table class="table table-hover">
+        <thead>
+          <td>Name</td>
+          <td>Created At</td>
+          <td>Type</td>
+          <td>Status</td>
+        </thead>
+        <tbody>
+          <tr ng-repeat="queue in $ctrl.queues">
+            <td>{{ queue.type | uppercase }} #{{ queue.id }}</td>
+            <td>{{ queue.created_at | date }}</td>
+            <td>{{ queue.type }}</td>
+            <td>{{ queue.state }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
