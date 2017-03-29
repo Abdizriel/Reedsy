@@ -18,14 +18,10 @@ const socketio = require('socket.io')(server, {
 	path: '/socket.io-client'
 });
 
-const QueueConfig = require('./config/queue.conf')();
-const RoutesConfig = require('./config/routes.conf')();
 const ApplicationConfig = require('./config/app.conf')();
 const SocketIOConfig = require('./config/socket.conf')();
 
-QueueConfig.init();
 ApplicationConfig.init(app);
-RoutesConfig.init(app);
 SocketIOConfig.init(socketio);
 
 /**
