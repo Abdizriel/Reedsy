@@ -7,7 +7,7 @@
  * @param {Function} handleError - Handle errors
  * @param {Function} respondWithResult - Responds with results
  */
-const { respondWithResult, handleError } = require('../responses');
+const { respondWithResult, handleError } = require('../../lib/response');
 
 /**
  * @function create
