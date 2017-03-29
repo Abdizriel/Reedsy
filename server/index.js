@@ -2,7 +2,6 @@
 
 const http = require('http');
 const express = require('express');
-const socketio = require('socket.io-client');
 const dotenv = require('dotenv-safe');
 
 dotenv.load({
@@ -18,6 +17,16 @@ const SocketIOConfig = require('./config/socket.conf');
 
 const app = express();
 const server = http.createServer(app);
+
+const socketio = require('socket.io')(server, {
+	serveClient: process.env.NODE_ENV !== 'production',
+	path: '/socket.io-client'
+});
+
+const QueueConfig = require('./config/queue.conf')();
+const RoutesConfig = require('./config/routes.conf')();
+const ApplicationConfig = require('./config/app.conf')();
+const SocketIOConfig = require('./config/socket.conf')();
 
 QueueConfig.init();
 ApplicationConfig.init(app);
