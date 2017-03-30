@@ -1,0 +1,53 @@
+.reedsy-table {
+  &.table > thead > tr > th {
+    border-bottom: none;
+    padding: 1.5rem;
+  }
+
+  &.table > tbody > tr > td {
+    border-top: none;
+    padding: 1.5rem;
+  }
+}
+
+.reedsy-pagination {
+  ul {
+    li {
+
+      &.active {
+        a {
+          background: transparent;
+          border: none;
+          color: #000;
+          font-weight: bold;
+          font-size: 17px;
+          margin-top: -4px;
+
+          &:hover, &:focus, &:active {
+            color: #000;
+            background: transparent;
+            font-weight: bold;
+            margin-top: -4px;
+          }
+        }
+
+      }
+
+      a {
+        color: #000;
+        border: none;
+
+        &:hover, &:focus, &:active {
+          color: #000;
+          background: transparent;
+          font-weight: bold;
+          margin-top: -1px;
+        }
+      }
+    }
+  }
+}
+
+.margin-top-25 {
+  margin-top: 25px;
+}

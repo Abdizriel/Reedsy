@@ -8,6 +8,11 @@
 			this.$http = $http;
 			this.socket = socket;
 			this.queues = [];
+			this.config = {
+		    itemsPerPage: 15,
+		    maxPages: 5,
+		    fillLastPage: false
+		  };
 			this.QueueService = QueueService;
 
 			$scope.$on('$destroy', () => {

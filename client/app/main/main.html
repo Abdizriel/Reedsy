@@ -1,25 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Conversions:</h1>
-      <button ng-click="$ctrl.addQueue('pdf')">New PDF Conversion</button>
-      <button ng-click="$ctrl.addQueue('html')">New HTML Conversion</button>
-      <table class="table table-hover">
-        <thead>
-          <td>Name</td>
-          <td>Created At</td>
-          <td>Type</td>
-          <td>Status</td>
-        </thead>
+      <div class="col-md-6 col-sm-12">
+        <h1>Conversions</h1>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="col-md-6">
+          <button class="btn btn-block btn-danger margin-top-25" ng-click="$ctrl.addQueue('pdf')">New PDF Conversion</button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-block btn-success margin-top-25" ng-click="$ctrl.addQueue('html')">New HTML Conversion</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <table class="reedsy-table table reedsy-table" at-table at-paginated at-list="$ctrl.queues" at-config="$ctrl.config">
+        <thead></thead>
         <tbody>
-          <tr ng-repeat="queue in $ctrl.queues">
-            <td>{{ queue.type | uppercase }} #{{ queue.id }}</td>
-            <td>{{ queue.createdAt | date }}</td>
-            <td>{{ queue.type }}</td>
-            <td>{{ queue.state }}</td>
+          <tr>
+            <td class="col-md-7" at-attribute="type" at-title="Name">
+              {{ item.type | uppercase }} #{{ item.id }}
+            </td>
+            <td class="col-md-2" at-attribute="createdAt" at-title="Created At">{{ item.createdAt | date:'EEE, MMM d, h:mma' }}</td>
+            <td class="col-md-1" at-attribute="type" at-title="Type">
+                <span class="label label-success" ng-if="item.type === 'html'">{{ item.type | uppercase }}</span>
+                <span class="label label-danger" ng-if="item.type === 'pdf'">{{ item.type | uppercase }}</span>
+            </td>
+            <td class="col-md-2" at-attribute="state" at-title="Status">
+              <span ng-if="item.state === 'complete'"><i class="fa fa-check" aria-hidden="true"></i> Processed</span>
+              <span ng-if="item.state === 'active'"><i class="fa fa-spinner fa-pulse" aria-hidden="true"></i> Processing</span>
+              <span ng-if="item.state === 'inactive'"><i class="fa fa-clock-o" aria-hidden="true"></i> In Queue</span>
+            </td>
           </tr>
         </tbody>
       </table>
+      <at-pagination class="reedsy-pagination text-center" at-list="$ctrl.queues" at-config="$ctrl.config"></at-pagination>
+
     </div>
   </div>
 </div>
