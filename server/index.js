@@ -1,7 +1,7 @@
 'use strict';
 
-const logger = require('logfmt');
 const http = require('http');
+const logger = require('logfmt');
 const express = require('express');
 const dotenv = require('dotenv-safe');
 

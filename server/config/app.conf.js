@@ -1,12 +1,12 @@
 'use strict';
 
+const path = require('path');
 const logger = require('logfmt');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const contentLength = require('express-content-length-validator');
 const helmet = require('helmet');
 const express = require('express');
-const path = require('path');
 const kue = require('kue');
 
 const ApplicationConfig = () => {

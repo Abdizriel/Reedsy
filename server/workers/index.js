@@ -96,52 +96,61 @@ const Workers = () => {
 		queue
 			.on('job enqueue', id => {
 				kue.Job.get(id, (err, job) => {
-    			if (err) return;
+					if (err) {
+						return;
+					}
 					QueueEvents.emit('save', job);
 					logger.log({
 						type: 'info',
 						msg: 'queue added',
 						id,
-						queue : job.type
+						queue: job.type
 					});
-  			});
+				});
 			})
 			.on('job start', id => {
 				kue.Job.get(id, (err, job) => {
-    			if (err) return;
+					if (err) {
+						return;
+					}
 					QueueEvents.emit('save', job);
 					logger.log({
 						type: 'info',
 						msg: 'queue started',
 						id,
-						queue : job.type
+						queue: job.type
 					});
-  			});
+				});
 			})
 			.on('job complete', id => {
 				kue.Job.get(id, (err, job) => {
-    			if (err) return;
+					if (err) {
+						return;
+					}
 					QueueEvents.emit('save', job);
 					logger.log({
 						type: 'info',
 						msg: 'queue completed',
 						id,
-						queue : job.type,
-					 	duration: job.duration
+						queue: job.type,
+						duration: job.duration
 					});
-  			});
+				});
 			})
 			.on('job remove', id => {
 				kue.Job.get(id, (err, job) => {
-    			if (err) return;
+					if (err) {
+						return;
+					}
+
 					QueueEvents.emit('remove', job);
 					logger.log({
 						type: 'info',
 						msg: 'queue removed',
 						id,
-						queue : job.type,
+						queue: job.type
 					});
-  			});
+				});
 			});
 
 		logger.log({ type: 'info', msg: 'configured', service: 'worker' });
