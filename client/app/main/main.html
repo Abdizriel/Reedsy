@@ -14,7 +14,7 @@
         <tbody>
           <tr ng-repeat="queue in $ctrl.queues">
             <td>{{ queue.type | uppercase }} #{{ queue.id }}</td>
-            <td>{{ queue.created_at | date }}</td>
+            <td>{{ queue.createdAt | date }}</td>
             <td>{{ queue.type }}</td>
             <td>{{ queue.state }}</td>
           </tr>

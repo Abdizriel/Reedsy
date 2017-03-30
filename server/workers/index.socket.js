@@ -10,10 +10,8 @@ const events = ['save', 'remove'];
  * @param event - Model event
  * @param socket - Socket library
  */
-const createListener = (event, socket) => {
-	return doc => {
-		socket.emit(event, doc);
-	};
+const createListener = (event, socket) => doc => {
+	socket.emit(event, doc);
 };
 
 /**
@@ -22,10 +20,8 @@ const createListener = (event, socket) => {
  * @param event - Model event
  * @param listener - Socket Listener
  */
-const removeListener = (event, listener) => {
-	return () => {
-		QueueEvents.removeListener(event, listener);
-	};
+const removeListener = (event, listener) => () => {
+	QueueEvents.removeListener(event, listener);
 };
 
 /**
@@ -34,13 +30,12 @@ const removeListener = (event, listener) => {
  * @param socket - Socket library
  */
 const register = socket => {
-	for (let i = 0, eventsLength = events.length; i < eventsLength; i++) {
-		const event = events[i];
+	events.forEach(event => {
 		const listener = createListener('queue:' + event, socket);
 
 		QueueEvents.on(event, listener);
 		socket.on('disconnect', removeListener(event, listener));
-	}
+	});
 };
 
 module.exports = register;
