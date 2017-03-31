@@ -3,13 +3,31 @@
 const logger = require('logfmt');
 const QueueSockets = require('../workers/index.socket');
 
+/**
+ * @function SocketIOConfig
+ * @description SocketIO configuration
+ * @constructor
+ * @returns {Object}
+ */
 const SocketIOConfig = () => {
+	/**
+	 * @function onDisconnect
+	 * @description On disconnect from socket perform this
+	 * @param {Object} socket - socket data
+	 * @returns {Object}
+	 */
 	const onDisconnect = socket => {
 		socket.on('disconnect', () => {
 			socket.log('DISCONNECTED');
 		});
 	};
 
+	/**
+	 * @function onConnect
+	 * @description On Connect from socket perform this
+	 * @param {Object} socket - socket data
+	 * @returns {Object}
+	 */
 	const onConnect = socket => {
 		socket.on('info', data => {
 			socket.log(JSON.stringify(data, null, 2));
@@ -18,6 +36,11 @@ const SocketIOConfig = () => {
 		QueueSockets(socket);
 	};
 
+	/**
+	 * @function init
+	 * @description Init socket IO config
+	 * @param {Object} socketio - SocketIO
+	 */
 	const init = socketio => {
 		socketio.on('connection', socket => {
 			socket.address = socket.request.connection.remoteAddress +

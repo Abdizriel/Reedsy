@@ -9,7 +9,18 @@ const helmet = require('helmet');
 const express = require('express');
 const kue = require('kue');
 
+/**
+ * @function ApplicationConfig
+ * @description Application configuration
+ * @constructor
+ * @returns {Object}
+ */
 const ApplicationConfig = () => {
+	/**
+	 * @function init
+	 * @description Init application configuration
+	 * @param {Object} app - Express application
+	 */
 	const init = app => {
 		const _root = process.cwd();
 		const _nodeModules = '/node_modules/';

@@ -2,7 +2,7 @@
 
 /**
  * @function PDFWorker
- * @classdesc PDF queue worker
+ * @description PDF queue worker
  * @module PDFWorker
  */
 const PDFWorker = (job, done) => {

@@ -10,6 +10,12 @@ const queue = kue.createQueue({ redis: process.env.REDIS_URI });
 const QueueEvents = new EventEmitter();
 QueueEvents.setMaxListeners(0);
 
+/**
+ * @function Workers
+ * @description Workers module
+ * @constructor
+ * @module Workers
+ */
 const Workers = () => {
 	/**
 	 * @function tokens

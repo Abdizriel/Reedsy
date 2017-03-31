@@ -2,7 +2,7 @@
 
 /**
  * @function HTMLWorker
- * @classdesc HTML queue worker
+ * @description HTML queue worker
  * @module HTMLWorker
  */
 const HTMLWorker = (job, done) => {
