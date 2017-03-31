@@ -7,10 +7,9 @@
     "bin": "./bin"
   },
   "scripts": {
-    "start": "bin/reedsy-backend",
-    "dev": "NODE_ENV=development bin/reedsy-backend",
-    "test": "xo && NODE_ENV=test mocha '**/*.spec.js'",
-    "coverage": "NODE_ENV=test istanbul cover _mocha '**/*.spec.js'"
+    "start": "./node_modules/.bin/gulp serve",
+    "build": "./node_modules/.bin/gulp build",
+    "lint": "./node_modules/.bin/xo'"
   },
   "xo": {
     "globals": ["angular", "_"],
